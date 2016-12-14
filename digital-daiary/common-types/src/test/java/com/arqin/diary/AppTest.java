@@ -1,4 +1,4 @@
-package edu.javacourse.crm;
+package com.arqin.diary;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

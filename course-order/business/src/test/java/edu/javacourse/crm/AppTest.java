@@ -1,38 +1,47 @@
 package edu.javacourse.crm;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
- * Unit test for simple App.
+ * Created by artemtursunov on 14.12.16.
  */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+public class AppTest {
+    @Before
+    public void setUp() throws Exception {
+
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+    @After
+    public void tearDown() throws Exception {
+
     }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    @Test
+    public void test1() throws Exception {
+        App p = new App();
+            p.test1();
+            Assert.fail();
     }
+
+    @Test(expected = MyException.class)
+    public void test2() throws Exception {
+        App p = null;
+        try {
+
+            p.test2();
+        }
+        catch (Exception ex) {
+            throw new MyException(ex.getMessage());
+        }
+    }
+
+    @Test
+    public void test3() throws Exception {
+        App p = new App();
+        p.test3();
+    }
+
 }
