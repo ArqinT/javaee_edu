@@ -8,7 +8,7 @@ import java.util.Set;
  * Created by artemtursunov on 15.12.16.
  */
 @Entity
-@Table(name = "person_type")
+@Table(name = "Nperson_type")
 public class PersonType {
 
     @Id
@@ -24,6 +24,10 @@ public class PersonType {
     @OneToMany
     @JoinColumn(name = "person_type_id")
     public Set<Person> persons = new HashSet<Person>();
+
+    public PersonType() {
+        super();
+    }
 
     public Long getTypeId() {
         return typeId;

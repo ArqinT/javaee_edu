@@ -43,6 +43,13 @@ public class Person {
         this.patronymic = patronymic;
     }
 
+    public Person(String name, String surname, String patronymic, Long personTypeId) {
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        this.personType = new PersonType(personTypeId);
+    }
+
     public int getPersonId() {
         return personId;
     }

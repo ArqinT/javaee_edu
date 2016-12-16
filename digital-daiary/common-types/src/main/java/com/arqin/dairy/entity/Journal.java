@@ -16,17 +16,18 @@ public class Journal {
     private Long journalId;
 
     @Column(name = "journal_created_at")
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "person_id")
     public Person person;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "subject_id")
     private Subject subject;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinColumn(name = "grade_id")
     private Grade grade;
 

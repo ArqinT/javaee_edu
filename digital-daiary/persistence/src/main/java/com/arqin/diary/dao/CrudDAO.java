@@ -1,6 +1,5 @@
 package com.arqin.diary.dao;
 
-import org.hibernate.HibernateError;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,7 +20,7 @@ public class CrudDAO {
     public static void init() {
         try {
             Configuration configuration = new Configuration();
-            configuration.configure("resources/hibernate.cfg.xml");
+            configuration.configure("hibernate.cfg.xml");
             serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 
