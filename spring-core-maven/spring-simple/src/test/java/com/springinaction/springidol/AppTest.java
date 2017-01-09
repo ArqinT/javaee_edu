@@ -15,4 +15,9 @@ public class AppTest {
         app.main(args);
     }
 
+    @Test
+    public void magicianShouldReadVolunteersMind() {
+        volunteer.thinkOfSomething("Queen of Hearts");
+        assertEquals("Queen of Hearts", magician2.getThoughts()); }
+
 }
