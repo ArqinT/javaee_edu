@@ -1,8 +1,7 @@
 package com.arqin.dairy.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by artemtursunov on 15.12.16.
@@ -21,12 +20,16 @@ public class PersonType {
     @Column(name = "person_type_description")
     public String typeDescription;
 
-    @OneToMany
-    @JoinColumn(name = "person_type_id")
-    public Set<Person> persons = new HashSet<Person>();
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "personType")
+
+    public List<Person> persons;
 
     public PersonType() {
-        super();
+
+    }
+
+    public PersonType(Long personType) {
+        this.typeId = personType;
     }
 
     public Long getTypeId() {
@@ -53,11 +56,11 @@ public class PersonType {
         this.typeDescription = typeDescription;
     }
 
-    public Set<Person> getPersons() {
+    public List<Person> getPersons() {
         return persons;
     }
 
-    public void setPersons(Set<Person> persons) {
+    public void setPersons(List<Person> persons) {
         this.persons = persons;
     }
 }

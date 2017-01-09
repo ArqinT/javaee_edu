@@ -1,7 +1,5 @@
 package com.arqin.dairy.entity;
 
-
-
 import javax.persistence.*;
 
 /**
@@ -26,7 +24,7 @@ public class Person {
     @Column(name = "person_patronymic")
     private String patronymic;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "person_type_id")
     private PersonType personType;
 

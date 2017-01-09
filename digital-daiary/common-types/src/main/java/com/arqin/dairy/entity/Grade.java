@@ -1,7 +1,5 @@
 package com.arqin.dairy.entity;
 
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
 
 /**

@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 
@@ -16,6 +18,8 @@ public class CrudDAO {
 
     private static SessionFactory sessionFactory;
     private static ServiceRegistry serviceRegistry;
+
+    private static Logger logger = LoggerFactory.getLogger(CrudDAO.class);
 
     public static void init() {
         try {
