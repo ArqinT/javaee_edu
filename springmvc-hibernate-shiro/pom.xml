@@ -153,5 +153,28 @@
   </dependencies>
   <build>
     <finalName>basic-springmvc</finalName>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>3.6.0</version>
+              <configuration>
+                  <source>1.8</source>
+                  <target>1.8</target>
+              </configuration>
+          </plugin>
+          <plugin>
+              <groupId>org.wildfly.plugins</groupId>
+              <artifactId>wildfly-maven-plugin</artifactId>
+              <version>1.1.0.Beta1</version>
+          </plugin>
+      </plugins>
   </build>
+    <distributionManagement>
+        <repository>
+            <id>ru.ntdev</id>
+            <name>basic-springmvc</name>
+            <url>file:///www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/target/</url>
+        </repository>
+    </distributionManagement>
 </project>
