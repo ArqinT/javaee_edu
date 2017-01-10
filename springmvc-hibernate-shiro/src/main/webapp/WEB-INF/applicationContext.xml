@@ -1,0 +1,103 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context" 
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+   
+   <mvc:resources mapping="/resources/**" location="/resources/" />
+   <mvc:annotation-driven />
+   <tx:annotation-driven transaction-manager="transactionManager"/>
+   
+   <context:component-scan base-package="ru.ntdev" />
+
+
+    <bean id="serverDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://localhost:5432/test" />
+        <property name="username" value="test" />
+        <property name="password" value="123" />
+    </bean>
+    <bean id="hibernate5AnnotatedSessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="serverDataSource" />
+        <property name="annotatedClasses">
+            <list>
+                <value>ru.ntdev.user.entity.UserEntity</value>
+                <value>ru.ntdev.user.entity.RoleEntity</value>
+                <value>ru.ntdev.user.entity.ResourceTypeEntity</value>
+                <value>ru.ntdev.user.entity.ResourceEntity</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="userDao" class="ru.ntdev.user.dao.UserDaoImpl">
+	<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+    </bean>
+    <bean id="userService" class="ru.ntdev.user.service.UserServiceImpl">
+            <property name="userDao" ref="userDao"></property>
+    </bean>
+   <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+   </bean>
+   
+   
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/views/" />
+      <property name="suffix" value=".jsp" />
+   </bean>
+   
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager" />
+        <!-- override these for application-specific URLs if you like: -->
+        <property name="loginUrl" value="/login"/>        
+        <property name="successUrl" value="/welcome"/>
+        <property name="unauthorizedUrl" value="/welcome"/>
+        <property name="filterChainDefinitions">
+            <value>
+               /** = authc
+               /logout = logout
+            </value>
+        </property>
+    </bean>
+    
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myRealm"/>
+    </bean>
+    
+    <bean id="myMatcher" class="ru.ntdev.security.MyMatcher"/>
+    
+    <bean id="myRealm" class="ru.ntdev.security.MyRealm">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+        <property name="credentialsMatcher" ref="myMatcher"/>
+    </bean>
+    
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    
+    <!-- Enable Shiro Annotations for Spring-configured beans.  Only run after -->
+    <!-- the lifecycleBeanProcessor has run: -->    
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>
+        <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">/403</prop>
+                <prop key="org.apache.shiro.authz.AuthorizationException">/login</prop>                      
+            </props>
+        </property>
+    </bean>    
+
+</beans>
+
+

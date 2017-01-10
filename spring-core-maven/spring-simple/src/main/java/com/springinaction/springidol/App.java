@@ -39,5 +39,11 @@ public class App {
 //        System.out.println("");
 //        Performer performer4 = (Performer) ctx.getBean("eddie");
 //        performer4.perform();
+        System.out.println("MindRead");
+        System.out.println("");
+        Thinker volunteer = (Thinker) ctx.getBean("volunteer");
+        Magician2 magician2 = (Magician2) ctx.getBean("magician2");
+        volunteer.thinkOfSomething("Queen of Hearts");
+        System.out.println(magician2.getThoughts());
     }
 }

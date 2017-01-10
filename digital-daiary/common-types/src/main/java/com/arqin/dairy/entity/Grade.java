@@ -12,13 +12,13 @@ public class Grade {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "grade_gen")
     @SequenceGenerator(name = "grade_gen", sequenceName = "grade_grade_id_seq")
     @Column(name = "grade_id")
-    public Long gradeId;
+    private Long gradeId;
 
     @Column(name = "grade_description")
-    public String description;
+    private String description;
 
     @Column(name = "grade_code")
-    public String gradeCode;
+    private String gradeCode;
 
     public Grade() {
     }

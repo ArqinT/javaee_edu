@@ -18,6 +18,8 @@ http://www.springframework.org/schema/aop
                                 expression="com.springinaction.springidol.Audience"/>
         <context:include-filter type="assignable"
                                 expression="com.springinaction.springidol.MindReader"/>
+        <context:include-filter type="assignable"
+                                expression="com.springinaction.springidol.Thinker"/>
         <!--<context:exclude-filter type="annotation"-->
         <!--expression="com.springinaction.springidol.SkipIt"/>-->
     </context:component-scan>

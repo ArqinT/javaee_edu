@@ -12,10 +12,10 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "subject_gen")
     @SequenceGenerator(name = "subject_gen", sequenceName = "subject_subject_id_seq")
     @Column(name = "subject_id")
-    public Integer subjectId;
+    private Integer subjectId;
 
     @Column(name = "subject_name")
-    public String name;
+    private String name;
 
 
     public Integer getSubjectId() {

@@ -17,6 +17,8 @@ public class AppTest {
 
     @Test
     public void magicianShouldReadVolunteersMind() {
+        Volunteer volunteer = new Volunteer();
+        Magician2 magician2 = new Magician2();
         volunteer.thinkOfSomething("Queen of Hearts");
         assertEquals("Queen of Hearts", magician2.getThoughts()); }
 

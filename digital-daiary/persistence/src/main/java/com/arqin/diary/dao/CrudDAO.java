@@ -35,6 +35,11 @@ public class CrudDAO {
         }
     }
 
+    /**
+     * 
+     * @param entity
+     * @return
+     */
     public Serializable addEntity(Object entity) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
