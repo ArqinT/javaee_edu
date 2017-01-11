@@ -5,12 +5,8 @@
  */
 package ru.ntdev.user.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  *
@@ -20,10 +16,13 @@ import javax.persistence.Table;
 @Table(name = "resource_types")
 public class ResourceTypeEntity {
    @Id
-   @SequenceGenerator(name="resources_type_id_seq",sequenceName="resources_type_id_seq",allocationSize=1)
-   @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="resources_type_id_seq") 
+   @SequenceGenerator(name="resource_types_id_seq", sequenceName="resource_types_id_seq",allocationSize=1)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="resource_types_id_seq")
    private int id;
    private String code;
+
+   @OneToMany(fetch = FetchType.EAGER, mappedBy = "type")
+   private List<ResourceEntity> resources;
 
     /**
      * @return the id
@@ -45,5 +44,20 @@ public class ResourceTypeEntity {
     public void setCode(String code) {
         this.code = code;
     }
-    
+
+    /**
+     * @return List<ResourceEntity>
+     */
+    public List<ResourceEntity> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<ResourceEntity> resources) {
+        this.resources = resources;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: "+this.id+" Code: "+this.code;
+    }
 }

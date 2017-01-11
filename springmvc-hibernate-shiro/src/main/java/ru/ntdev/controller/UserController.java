@@ -65,6 +65,6 @@ public class UserController {
       String p = user.getPrincipal().toString();
       user.logout();
       logger.info("User logout: "+p);
-      return "logout"; 
+      return "redirect:/login";
     }
 }
