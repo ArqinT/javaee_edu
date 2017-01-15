@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ru.ntdev.user.entity.ResourceEntity;
 import ru.ntdev.user.entity.ResourceTypeEntity;
 import ru.ntdev.user.service.ResourceTypeService;
 
@@ -24,7 +23,7 @@ public class ResourceTypeController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired(required=true)
+    @Autowired
     @Qualifier(value="resourceTypeService")
     public void setResourceTypeService(ResourceTypeService rts){
         this.resourceTypeService = rts;

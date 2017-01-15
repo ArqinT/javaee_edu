@@ -1,5 +1,6 @@
 package ru.ntdev.user.service;
 
+import org.springframework.stereotype.Service;
 import ru.ntdev.user.entity.ResourceEntity;
 
 import java.util.List;
@@ -9,13 +10,13 @@ import java.util.List;
  */
 public interface ResourceService {
 
-    List<ResourceEntity> listResourceTypes();
+    List<ResourceEntity> listResources();
 
-    ResourceEntity getResourceTypeById(Integer id);
+    ResourceEntity getResourceById(Integer id);
 
-    void addResourceType(ResourceEntity resourceEntity);
+    void addResource(ResourceEntity resourceEntity);
 
-    void removeResourceType(Integer id);
+    void removeResource(Integer id);
 
-    void updateResourceType(ResourceEntity resourceEntity);
+    void updateResource(ResourceEntity resourceEntity);
 }
