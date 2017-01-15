@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Resources Page</title>
+    <title>Resource Type Page</title>
     <style type="text/css">
         .tg {
             border-collapse: collapse;
@@ -47,7 +47,7 @@
 </head>
 <body>
 <br>
-<h3>Add Resource</h3>
+<h3>Add Type</h3>
 <c:url var="addAction" value="/resource_type/add"></c:url>
 <form:form action="${addAction}" commandName="resourceType">
     <table>
@@ -90,8 +90,8 @@
 </form:form>
 
 <br>
-<h3>Types List</h3>
-<c:if test="${!empty listResourceTypes}">
+<h3>Resources List</h3>
+<c:if test="${!empty listResources}">
     <table class="tg">
         <tr>
             <th width="80">Type ID</th>
@@ -99,7 +99,7 @@
             <th width="120">Type Resources</th>
             <th width="120" colspan="2">Actions</th>
         </tr>
-        <c:forEach items="${listResourceTypes}" var="type">
+        <c:forEach items="${listResources}" var="type">
             <tr>
                 <td>${type.id}</td>
                 <td>${type.code}</td>
@@ -115,7 +115,7 @@
         </c:forEach>
     </table>
 </c:if>
-<c:if test="${empty listResourceTypes}">
+<c:if test="${empty listResources}">
     <h1>Не найдены типы ресурсов</h1>
 </c:if>
 </body>

@@ -47,7 +47,7 @@
 </head>
 <body>
 <br>
-<h3>Add Type</h3>
+<h3>Add Resource</h3>
 <c:url var="addAction" value="/resource_type/add"></c:url>
 <form:form action="${addAction}" commandName="resourceType">
     <table>
