@@ -42,7 +42,7 @@ public class RoleEntity {
                     @JoinColumn(name = "role_id", nullable = false, updatable = false) },
                     inverseJoinColumns = { @JoinColumn(name = "resource_id",nullable = false, updatable = false) 
     })
-    private Set<ResourceEntity> resources;
+    private Set<ResourceItemEntity> resources;
 
     /**
      * @return the id
@@ -68,14 +68,14 @@ public class RoleEntity {
     /**
      * @return the resources
      */
-    public Set<ResourceEntity> getResources() {
+    public Set<ResourceItemEntity> getResources() {
         return resources;
     }
 
     /**
      * @param resources the resources to set
      */
-    public void setResources(Set<ResourceEntity> resources) {
+    public void setResources(Set<ResourceItemEntity> resources) {
         this.resources = resources;
     }
     

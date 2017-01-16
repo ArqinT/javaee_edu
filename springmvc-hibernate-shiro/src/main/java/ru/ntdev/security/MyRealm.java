@@ -27,7 +27,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.ntdev.user.entity.ResourceEntity;
+import ru.ntdev.user.entity.ResourceItemEntity;
 /**
  *
  * @author vminakov
@@ -57,7 +57,7 @@ public class MyRealm extends AuthorizingRealm {
             for (RoleEntity role : user.getRoles()) {
                 info.addRole(role.getCode());
                 //HashSet<Permission> permissions = new HashSet<Permission>();
-                for (ResourceEntity resource : role.getResources()) {
+                for (ResourceItemEntity resource : role.getResources()) {
                     Permission p = new WildcardPermission(resource.getType().getCode()+':'+resource.getCode()+":*");                                                                                
                     info.addObjectPermission(p);
                     logger.info("User Authorization:permissions add: ["+p+"]");

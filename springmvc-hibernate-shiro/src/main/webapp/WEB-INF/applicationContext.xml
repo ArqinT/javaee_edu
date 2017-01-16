@@ -8,8 +8,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-   
-   <mvc:resources mapping="/resources/**" location="/resources/" />
+
    <mvc:annotation-driven />
    <tx:annotation-driven transaction-manager="transactionManager"/>
    
@@ -29,7 +28,7 @@
                 <value>ru.ntdev.user.entity.UserEntity</value>
                 <value>ru.ntdev.user.entity.RoleEntity</value>
                 <value>ru.ntdev.user.entity.ResourceTypeEntity</value>
-                <value>ru.ntdev.user.entity.ResourceEntity</value>
+                <value>ru.ntdev.user.entity.ResourceItemEntity</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -49,13 +48,7 @@
 	<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
     </bean>
     <bean id="resourceTypeService" class="ru.ntdev.user.service.ResourceTypeServiceImpl">
-            <property name="resourceTypeDao" ref="resourceTypeDao"></property>
-    </bean>
-    <bean id="resourceDao" class="ru.ntdev.user.dao.ResourceDaoImpl">
-        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
-    </bean>
-    <bean id="resourceService" class="ru.ntdev.user.service.ResourceServiceImpl">
-            <property name="resourceDao" ref="resourceDao"></property>
+            <property name="resourceTypeDao" ref="resourceTypeDao"/>
     </bean>
    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />

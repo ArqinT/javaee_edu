@@ -20,14 +20,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "resources")
-public class ResourceEntity {
+public class ResourceItemEntity {
    @Id
    @SequenceGenerator(name="resources_id_seq",sequenceName="resources_id_seq",allocationSize=1)
    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="resources_id_seq")   
    private int id;
+
    @ManyToOne
    @JoinColumn(name = "type_id")
    private ResourceTypeEntity type;
+
    private String code;
 
     /**

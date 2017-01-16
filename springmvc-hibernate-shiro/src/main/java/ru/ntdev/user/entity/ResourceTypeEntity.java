@@ -22,7 +22,7 @@ public class ResourceTypeEntity {
    private String code;
 
    @OneToMany(fetch = FetchType.EAGER, mappedBy = "type")
-   private List<ResourceEntity> resources;
+   private List<ResourceItemEntity> resources;
 
     /**
      * @return the id
@@ -46,13 +46,13 @@ public class ResourceTypeEntity {
     }
 
     /**
-     * @return List<ResourceEntity>
+     * @return List<ResourceItemEntity>
      */
-    public List<ResourceEntity> getResources() {
+    public List<ResourceItemEntity> getResources() {
         return resources;
     }
 
-    public void setResources(List<ResourceEntity> resources) {
+    public void setResources(List<ResourceItemEntity> resources) {
         this.resources = resources;
     }
 
