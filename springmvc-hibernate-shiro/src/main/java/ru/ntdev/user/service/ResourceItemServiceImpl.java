@@ -14,7 +14,6 @@ import java.util.List;
 @Service
 public class ResourceItemServiceImpl implements ResourceItemService {
 
-    @Autowired
     private ResourceItemDao resourceItemDao;
 
     @Override
@@ -45,5 +44,13 @@ public class ResourceItemServiceImpl implements ResourceItemService {
     @Transactional
     public void updateResourceItem(ResourceItemEntity resourceItemEntity) {
         this.resourceItemDao.updateResourceItem(resourceItemEntity);
+    }
+
+    public ResourceItemDao getResourceItemDao() {
+        return resourceItemDao;
+    }
+
+    public void setResourceItemDao(ResourceItemDao resourceTypeDao) {
+        this.resourceItemDao = resourceTypeDao;
     }
 }

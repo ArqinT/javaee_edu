@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public class ResourceItemDaoImpl implements ResourceItemDao {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(ResourceItemDaoImpl.class);
     private SessionFactory sessionFactory;
 
     public void setSessionFactory(SessionFactory sf){
@@ -35,7 +35,7 @@ public class ResourceItemDaoImpl implements ResourceItemDao {
         Session session = this.sessionFactory.getCurrentSession();
         List<ResourceItemEntity> resourceItemEntityList = session.createQuery("from ResourceItemEntity").list();
         for(ResourceItemEntity r : resourceItemEntityList){
-            logger.info("Resourses List::"+r);
+            logger.info("Resourses List:"+r);
         }
         return resourceItemEntityList;
 

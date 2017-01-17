@@ -35,7 +35,7 @@ public class UserController {
         
         private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
-	@Autowired(required=true)
+	@Autowired
 	@Qualifier(value="userService")
 	public void setUserService(UserService us){
 		this.userService = us;

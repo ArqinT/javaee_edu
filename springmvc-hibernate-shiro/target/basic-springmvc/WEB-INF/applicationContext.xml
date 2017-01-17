@@ -50,12 +50,6 @@
     <bean id="resourceTypeService" class="ru.ntdev.user.service.ResourceTypeServiceImpl">
             <property name="resourceTypeDao" ref="resourceTypeDao"/>
     </bean>
-    <bean id="resourceItemDao" class="ru.ntdev.user.dao.ResourceItemDaoImpl">
-	<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
-    </bean>
-    <bean id="resourceItemService" class="ru.ntdev.user.service.ResourceItemServiceImpl">
-            <property name="resourceItemDao" ref="resourceItemDao"/>
-    </bean>
    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
    </bean>

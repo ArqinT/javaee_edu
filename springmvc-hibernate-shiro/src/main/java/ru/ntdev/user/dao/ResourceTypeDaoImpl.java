@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public class ResourceTypeDaoImpl implements ResourceTypeDao {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(ResourceTypeDaoImpl.class);
     private SessionFactory sessionFactory;
 
     public void setSessionFactory(SessionFactory sf){

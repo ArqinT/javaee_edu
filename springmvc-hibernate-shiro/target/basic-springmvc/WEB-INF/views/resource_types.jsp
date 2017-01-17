@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Resources Page</title>
+    <title>Resource Type Page</title>
     <style type="text/css">
         .tg {
             border-collapse: collapse;
@@ -47,11 +47,11 @@
 </head>
 <body>
 <br>
-<h3>Add Resource Type</h3>
-<c:url var="addAction" value="/resource/add"></c:url>
-<form:form action="${addAction}" commandName="resourceItem">
+<h3>Add Type</h3>
+<c:url var="addAction" value="/resource_type/add"></c:url>
+<form:form action="${addAction}" commandName="resourceType">
     <table>
-        <c:if test="${!empty resourceItem.code}">
+        <c:if test="${!empty resourceType.code}">
             <tr>
                 <td>
                     <form:label path="id">
@@ -75,24 +75,14 @@
             </td>
         </tr>
         <tr>
-            <td>
-                <form:label path="type_id">
-                    <spring:message text="Type"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="type_id"/>
-            </td>
-        </tr>
-        <tr>
             <td colspan="2">
-                <c:if test="${!empty resourceItem.code}">
+                <c:if test="${!empty resourceType.code}">
                     <input type="submit"
-                           value="<spring:message text="Edit resourceItem"/>"/>
+                           value="<spring:message text="Edit resourceType"/>"/>
                 </c:if>
-                <c:if test="${empty resourceItem.code}">
+                <c:if test="${empty resourceType.code}">
                     <input type="submit"
-                           value="<spring:message text="Add resourceItem"/>"/>
+                           value="<spring:message text="Add resourceType"/>"/>
                 </c:if>
             </td>
         </tr>
@@ -100,29 +90,33 @@
 </form:form>
 
 <br>
-<h3>Resources List</h3>
-<c:if test="${!empty listResources}">
+<h3>Types List</h3>
+<c:if test="${!empty listResourceTypes}">
     <table class="tg">
         <tr>
-            <th width="80">ID</th>
-            <th width="120">Code</th>
-            <th width="120">Type</th>
+            <th width="80">Type ID</th>
+            <th width="120">Type Code</th>
+            <th width="120">Type Resources</th>
             <th width="120" colspan="2">Actions</th>
         </tr>
-        <c:forEach items="${listResources}" var="resource">
+        <c:forEach items="${listResourceTypes}" var="type">
             <tr>
-                <td>${resource.id}</td>
-                <td>${resource.code}</td>
-                <td><%--<c:if test="${!empty resource.type}">${resource.type.code}</c:if>--%></td>
-                <td><a href="<c:url value='/resource/edit/${resource.id}' />">Edit</a></td>
-                <td><a href="<c:url value='/resource/remove/${resource.id}' />">Delete</a></td>
+                <td>${type.id}</td>
+                <td>${type.code}</td>
+                <td>
+                    <c:forEach items="${type.resources}" var="resource">
+                        ${resource.code}<br>
+                    </c:forEach>
+                </td>
+                <td><a href="<c:url value='/resource_type/edit/${type.id}' />" >Edit</a></td>
+                <td><a href="<c:url value='/resource_type/remove/${type.id}' />" >Delete</a></td>
 
             </tr>
         </c:forEach>
     </table>
 </c:if>
-<c:if test="${empty listResources}">
-    <h1>Не найдены ресурсы</h1>
+<c:if test="${empty listResourceTypes}">
+    <h1>Не найдены типы ресурсов</h1>
 </c:if>
 </body>
 </html>
