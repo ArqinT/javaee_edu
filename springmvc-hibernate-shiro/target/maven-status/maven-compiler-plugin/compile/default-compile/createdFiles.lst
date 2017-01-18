@@ -3,8 +3,8 @@ ru/ntdev/user/entity/UserEntity.class
 ru/ntdev/user/service/UserServiceImpl.class
 ru/ntdev/controller/MainController.class
 ru/ntdev/user/dao/ResourceItemDaoImpl.class
-ru/ntdev/user/dao/ResourceTypeDao.class
 ru/ntdev/user/dao/UserDaoImpl.class
+ru/ntdev/user/dao/ResourceTypeDao.class
 ru/ntdev/user/service/ResourceItemServiceImpl.class
 ru/ntdev/user/dao/EmployeeRepository.class
 ru/ntdev/user/dao/ResourceItemDao.class
