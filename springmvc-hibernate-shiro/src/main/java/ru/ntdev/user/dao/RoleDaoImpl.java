@@ -20,12 +20,10 @@ public class RoleDaoImpl implements RoleDao {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceTypeDaoImpl.class);
 
-    @Autowired
     private SessionFactory sessionFactory;
 
     @Override
     public List<RoleEntity> listRoles() {
-        logger.info(this.sessionFactory.toString());
         Session session = this.sessionFactory.getCurrentSession();
         List<RoleEntity> list = session.createQuery(" from RoleEntity").list();
         for (RoleEntity r : list) {
@@ -62,5 +60,9 @@ public class RoleDaoImpl implements RoleDao {
         Session session = sessionFactory.getCurrentSession();
         session.update(roleEntity);
         logger.info("Роль успешно обновлена: " + roleEntity);
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 }

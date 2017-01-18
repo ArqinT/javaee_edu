@@ -10,7 +10,6 @@
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/controller/ResourceTypeController.java
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/dao/ResourceItemDaoImplTest.java
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/service/ResourceItemServiceImpl.java
-/www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/dao/RoleDaoImplTest.java
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/service/UserService.java
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/dao/EmployeeRepository.java
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/service/RoleService.java
@@ -19,9 +18,8 @@
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/entity/UserEntity.java
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/service/ResourceTypeServiceImpl.java
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/dao/ResourceItemDaoImpl.java
-/www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/dao/ResourceTypeDaoImplTest.java
-/www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/entity/ResourceItemEntity.java
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/dao/UserDao.java
+/www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/entity/ResourceItemEntity.java
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/controller/ResourceItemController.java
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/security/MyMatcher.java
 /www/Java/Course/Github/javaee_edu/springmvc-hibernate-shiro/src/main/java/ru/ntdev/user/dao/RoleDao.java

@@ -75,14 +75,6 @@
             </td>
         </tr>
         <tr>
-            <td>
-                <form:label path="type_id">
-                    <spring:message text="Type"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="type_id"/>
-            </td>
         </tr>
         <tr>
             <td colspan="2">

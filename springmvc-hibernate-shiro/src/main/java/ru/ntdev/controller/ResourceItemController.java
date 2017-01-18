@@ -4,6 +4,7 @@ import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,6 @@ import org.springframework.ui.Model;
  */
 @Controller
 public class ResourceItemController {
-    @Autowired
     private ResourceItemService resourceItemService;
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -61,5 +61,11 @@ public class ResourceItemController {
         model.addAttribute("resource", this.resourceItemService.getResourceById(id));
         model.addAttribute("listResource", this.resourceItemService.listResources());
         return "resource_items";
+    }
+
+    @Autowired
+    @Qualifier(value="resourceItemService")
+    public void setResourceItemService(ResourceItemService resourceItemService) {
+        this.resourceItemService = resourceItemService;
     }
 }

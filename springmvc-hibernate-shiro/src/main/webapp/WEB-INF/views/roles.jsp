@@ -26,8 +26,7 @@
 	<c:forEach items="${listRoles}" var="role">
 		<tr>
 			<td>${role.id}</td>
-			<td>${role.rolename}</td>
-			<td>${role.password}</td>
+			<td>${role.code}</td>
                         <td>
                         <c:forEach items="${role.resources}" var="resource">
                             ${resource.type.code}: ${resource.code}
