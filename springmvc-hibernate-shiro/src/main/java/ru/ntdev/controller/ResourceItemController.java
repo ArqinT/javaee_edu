@@ -25,15 +25,15 @@ public class ResourceItemController {
     @RequiresAuthentication
     @RequestMapping(value = "/resource_items", method = RequestMethod.GET)
     public String listResources(Model model) {
-//        try {
+        try {
             model.addAttribute("resourceItem", new ResourceItemEntity());
             model.addAttribute("listResources", this.resourceItemService.listResources());
             return "resource_items";
-//        }
-//        catch (Exception e) {
-//            logger.info(e.getMessage());
-//            return "welcome";
-//        }
+        }
+        catch (Exception e) {
+            logger.info(e.getMessage());
+            return "welcome";
+        }
     }
 
     @RequiresAuthentication

@@ -37,7 +37,7 @@ public class RoleEntity {
     
     private String code;
     
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "role_resources", joinColumns = {
                     @JoinColumn(name = "role_id", nullable = false, updatable = false) },
                     inverseJoinColumns = { @JoinColumn(name = "resource_id",nullable = false, updatable = false) 

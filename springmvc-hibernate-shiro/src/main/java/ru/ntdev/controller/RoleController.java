@@ -46,7 +46,8 @@ public class RoleController {
     @RequiresAuthentication
     @RequestMapping(value = "/role/add", method = RequestMethod.POST)
     public String addRole(@ModelAttribute("role") RoleEntity roleEntity) {
-        logger.info("roleEntity: "+roleEntity.toString());
+        logger.info("roleEntity: "+ roleEntity.getId());
+
         if(roleEntity.getId() == 0){
             this.roleService.addRole(roleEntity);
         }else{
