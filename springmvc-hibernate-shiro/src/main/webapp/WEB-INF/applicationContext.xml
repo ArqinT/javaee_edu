@@ -9,12 +9,18 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-   <mvc:annotation-driven />
+   <mvc:annotation-driven conversion-service="conversionService"/>
    <tx:annotation-driven transaction-manager="transactionManager"/>
    
    <context:component-scan base-package="ru.ntdev" />
 
-
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean id="RoleToResourceItemConverter" class="ru.ntdev.component.RoleToResourceItemConverter" />
+            </set>
+        </property>
+    </bean>
     <bean id="serverDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.postgresql.Driver" />
         <property name="url" value="jdbc:postgresql://localhost:5432/test" />
