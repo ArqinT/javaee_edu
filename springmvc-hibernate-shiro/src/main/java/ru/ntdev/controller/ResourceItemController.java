@@ -13,13 +13,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import ru.ntdev.user.entity.ResourceItemEntity;
 import ru.ntdev.user.service.ResourceItemService;
 import org.springframework.ui.Model;
+import ru.ntdev.user.service.ResourceTypeService;
 
 /**
  * Created by atursunov on 12.01.17.
  */
 @Controller
 public class ResourceItemController {
+    @Autowired
     private ResourceItemService resourceItemService;
+
+    @Autowired
+    private ResourceTypeService resourceTypeService;
+
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @RequiresAuthentication
@@ -28,6 +34,7 @@ public class ResourceItemController {
         try {
             model.addAttribute("resourceItem", new ResourceItemEntity());
             model.addAttribute("listResources", this.resourceItemService.listResources());
+            model.addAttribute("listResourceTypes", this.resourceTypeService.listResourceTypes());
             return "resource_items";
         }
         catch (Exception e) {
@@ -37,8 +44,9 @@ public class ResourceItemController {
     }
 
     @RequiresAuthentication
-    @RequestMapping(value = "/resource/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/resource_item/add", method = RequestMethod.POST)
     public String addResourceItem(@ModelAttribute("resourceItem") ResourceItemEntity rt) {
+        logger.info("AddMethod: "+rt.getId());
         if(rt.getId() == 0){
             this.resourceItemService.addResourceItem(rt);
         }else{
@@ -49,23 +57,18 @@ public class ResourceItemController {
     }
 
     @RequiresAuthentication
-    @RequestMapping(value = "/resource/remove/{id}")
+    @RequestMapping(value = "/resource_item/remove/{id}")
     public String removeResourceItem(@PathVariable("id") Integer id) {
         this.resourceItemService.removeResourceItem(id);
         return "redirect:/resource_items";
     }
 
     @RequiresAuthentication
-    @RequestMapping(value = "/resource/edit/{id}")
+    @RequestMapping(value = "/resource_item/edit/{id}")
     public String editResourceItem(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("resource", this.resourceItemService.getResourceById(id));
-        model.addAttribute("listResource", this.resourceItemService.listResources());
+        model.addAttribute("resourceItem", this.resourceItemService.getResourceById(id));
+        model.addAttribute("listResources", this.resourceItemService.listResources());
+        model.addAttribute("listResourceTypes", this.resourceTypeService.listResourceTypes());
         return "resource_items";
-    }
-
-    @Autowired
-    @Qualifier(value="resourceItemService")
-    public void setResourceItemService(ResourceItemService resourceItemService) {
-        this.resourceItemService = resourceItemService;
     }
 }

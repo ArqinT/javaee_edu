@@ -5,6 +5,7 @@
  */
 package ru.ntdev.user.entity;
 
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,7 +43,7 @@ public class RoleEntity {
                     @JoinColumn(name = "role_id", nullable = false, updatable = false) },
                     inverseJoinColumns = { @JoinColumn(name = "resource_id",nullable = false, updatable = false) 
     })
-    private Set<ResourceItemEntity> resources;
+    private List<ResourceItemEntity> resources;
 
     /**
      * @return the id
@@ -68,14 +69,14 @@ public class RoleEntity {
     /**
      * @return the resources
      */
-    public Set<ResourceItemEntity> getResources() {
+    public List<ResourceItemEntity> getResources() {
         return resources;
     }
 
     /**
      * @param resources the resources to set
      */
-    public void setResources(Set<ResourceItemEntity> resources) {
+    public void setResources(List<ResourceItemEntity> resources) {
         this.resources = resources;
     }
     

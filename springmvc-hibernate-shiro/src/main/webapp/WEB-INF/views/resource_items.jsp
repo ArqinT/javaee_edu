@@ -2,6 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" %>
+<%@ page pageEncoding="utf-8" %>
 
 <html>
 <head>
@@ -47,9 +48,9 @@
 </head>
 <body>
 <br>
-<h3>Add Resource Type</h3>
-<c:url var="addAction" value="/resource/add"></c:url>
-<form:form action="${addAction}" commandName="resourceItem">
+<h3>Добавляем/редактируем ресурс</h3>
+<c:url var="addAction" value="/resource_item/add"></c:url>
+<form:form action="${addAction}" commandName="resourceItem" method="post">
     <table>
         <c:if test="${!empty resourceItem.code}">
             <tr>
@@ -77,7 +78,17 @@
         <tr>
         </tr>
         <tr>
-            <td colspan="2">
+            <td>
+                <form:label path="type">
+                    <spring:message text="Type"/>
+                </form:label>
+            </td>
+            <td>
+                <form:select path="type" items="${listResourceTypes}" itemValue="id" itemLabel="code"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">пш
                 <c:if test="${!empty resourceItem.code}">
                     <input type="submit"
                            value="<spring:message text="Edit resourceItem"/>"/>
@@ -88,6 +99,7 @@
                 </c:if>
             </td>
         </tr>
+
     </table>
 </form:form>
 
@@ -105,9 +117,9 @@
             <tr>
                 <td>${resource.id}</td>
                 <td>${resource.code}</td>
-                <td><%--<c:if test="${!empty resource.type}">${resource.type.code}</c:if>--%></td>
-                <td><a href="<c:url value='/resource/edit/${resource.id}' />">Edit</a></td>
-                <td><a href="<c:url value='/resource/remove/${resource.id}' />">Delete</a></td>
+                <td><c:if test="${!empty resource.type}">${resource.type.code}</c:if></td>
+                <td><a href="<c:url value='/resource_item/edit/${resource.id}' />">Edit</a></td>
+                <td><a href="<c:url value='/resource_item/remove/${resource.id}' />">Delete</a></td>
 
             </tr>
         </c:forEach>

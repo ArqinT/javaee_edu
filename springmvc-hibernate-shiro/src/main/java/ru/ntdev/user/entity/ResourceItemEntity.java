@@ -5,14 +5,10 @@
  */
 package ru.ntdev.user.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  *
@@ -26,9 +22,17 @@ public class ResourceItemEntity {
    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator="resources_id_seq")   
    private int id;
 
+   @Autowired
    @ManyToOne
    @JoinColumn(name = "type_id")
    private ResourceTypeEntity type;
+
+   @Autowired
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "role_resources", joinColumns = {
+            @JoinColumn(name = "resource_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", nullable = false, updatable = false)})
+    private List<RoleEntity> roles;
 
    private String code;
 
@@ -48,7 +52,7 @@ public class ResourceItemEntity {
     }
 
     /**
-     * @param type the type to set
+     * @param  type ResourceType
      */
     public void setType(ResourceTypeEntity type) {
         this.type = type;
@@ -67,6 +71,18 @@ public class ResourceItemEntity {
     public void setCode(String code) {
         this.code = code;
     }
-   
-   
+
+
+    public List<RoleEntity> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleEntity> roles) {
+        this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + this.id + " Code: " + this.code;
+    }
 }

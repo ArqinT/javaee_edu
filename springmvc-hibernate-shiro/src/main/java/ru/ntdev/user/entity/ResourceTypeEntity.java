@@ -22,14 +22,10 @@ public class ResourceTypeEntity {
     private int id;
     private String code;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "type")
+    @OneToMany(fetch = FetchType.EAGER,
+            mappedBy = "type",
+            cascade = {CascadeType.REMOVE, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<ResourceItemEntity> resources;
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "role_resources", joinColumns = {
-            @JoinColumn(name = "resourse_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "role_id", nullable = false, updatable = false)})
-    private List<RoleEntity> roles;
 
     /**
      * @return the id
@@ -66,13 +62,5 @@ public class ResourceTypeEntity {
     @Override
     public String toString() {
         return "ID: " + this.id + " Code: " + this.code;
-    }
-
-    public void setRoles(List<RoleEntity> roles) {
-        this.roles = roles;
-    }
-
-    public List<RoleEntity> getRoles() {
-        return roles;
     }
 }

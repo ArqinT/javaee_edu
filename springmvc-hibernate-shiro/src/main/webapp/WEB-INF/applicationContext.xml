@@ -18,6 +18,7 @@
         <property name="converters">
             <set>
                 <bean id="RoleToResourceItemConverter" class="ru.ntdev.component.RoleToResourceItemConverter" />
+                <bean id="ListToStringConverter" class="ru.ntdev.component.ListToStringConverter" />
             </set>
         </property>
     </bean>
