@@ -15,4 +15,7 @@ import ru.ntdev.user.entity.UserEntity;
 public interface UserService {
     public List<UserEntity> listUsers();
     public UserEntity getUserById(int id);
+    void addUser(UserEntity userEntity);
+    void updateUser(UserEntity userEntity);
+    void removeUser(int id);
 }

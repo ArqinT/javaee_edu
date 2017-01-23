@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" %>
 
 <html>
@@ -13,6 +14,69 @@
 	</style>
 </head>
 <body>
+<h3>Add/Edit User</h3>
+<c:url var="addAction" value="/user/add"></c:url>
+<form:form action="${addAction}" commandName="user">
+	<table>
+		<c:if test="${!empty user.username}">
+			<tr>
+				<td>
+					<form:label path="id">
+						<spring:message text="ID"/>
+					</form:label>
+				</td>
+				<td>
+					<form:input path="id" readonly="true" size="8" disabled="true"/>
+						<%--<form:hidden path="id" />--%>
+				</td>
+			</tr>
+		</c:if>
+		<tr>
+			<td>
+				<form:label path="username">
+					<spring:message text="Username"/>
+				</form:label>
+			</td>
+			<td>
+				<form:input path="username"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form:label path="password">
+					<spring:message text="Password"/>
+				</form:label>
+			</td>
+			<td>
+				<form:password path="password"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<form:label path="roles">
+					<spring:message text="Roles"/>
+				</form:label>
+			</td>
+			<td>
+				<form:select path="roles" items="${listRoles}" multiple="true" itemValue="id" itemLabel="code"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<c:if test="${!empty user.username}">
+					<input type="submit"
+						   value="<spring:message text="Edit role"/>"/>
+				</c:if>
+				<c:if test="${empty user.username}">
+					<input type="submit"
+						   value="<spring:message text="Add role"/>"/>
+				</c:if>
+			</td>
+		</tr>
+	</table>
+</form:form>
+
+<br>
 <br>
 <h3>User List</h3>
 <c:if test="${!empty listUsers}">

@@ -15,4 +15,7 @@ import ru.ntdev.user.entity.UserEntity;
 public interface UserDao {
     public List<UserEntity> listUsers();
     public UserEntity getUserById(int id);
+    void updateUser(UserEntity userEntity);
+    void removeUser(int id);
+    void addUser(UserEntity userEntity);
 }

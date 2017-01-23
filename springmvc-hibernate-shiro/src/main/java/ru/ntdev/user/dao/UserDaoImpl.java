@@ -42,9 +42,31 @@ public class UserDaoImpl implements UserDao{
     @Override
     public UserEntity getUserById(int id) {
         Session session = this.sessionFactory.getCurrentSession();		
-        UserEntity u = (UserEntity) session.load(UserEntity.class, new Integer(id));
+        UserEntity u = session.load(UserEntity.class, new Integer(id));
         logger.info("Person loaded successfully, Person details="+u);
         return u;
     }
-    
+
+    @Override
+    public void updateUser(UserEntity userEntity) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(userEntity);
+        logger.info("Пользователь обновлён: "+userEntity);
+    }
+
+    @Override
+    public void removeUser(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        UserEntity userEntity = session.load(UserEntity.class,  new Integer(id));
+        session.remove(userEntity);
+        logger.info("Пользователь удалён: "+userEntity);
+    }
+
+    @Override
+    public void addUser(UserEntity userEntity) {
+        Session session = this.sessionFactory.getCurrentSession();
+        session.save(userEntity);
+        logger.info("Пользователь создан: "+userEntity);
+    }
+
 }
